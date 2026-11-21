@@ -30,3 +30,7 @@ npm run agent -- run --once
 ```
 
 Подробная настройка, зоны полномочий и список команд — в [agent/README.md](agent/README.md).
+
+## Публикация на GitHub Pages
+
+Сайт собирается GitHub Actions из `main` и публикуется по адресу <https://erlan56region.github.io/proektia/>. В настройках репозитория **Settings → Pages → Build and deployment → Source** должен быть выбран **GitHub Actions**, а окружение `github-pages` должно разрешать деплой из `main`. В сборку попадает только папка `dist`, а не исходные данные или настройки агента.
