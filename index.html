@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f7f4">
+  <meta name="description" content="CoffeeIT — удобная отправная точка для работы с AI-агентами Arena.">
+  <title>CoffeeIT — пространство для ваших идей</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#262822;--muted:#898a80;--line:#e8e7e1;--bg:#faf9f6;--sidebar:#f1f0ea;--coffee:#514b3d;--accent:#a47550}
+    *{box-sizing:border-box} html,body{margin:0;min-height:100%;font-family:'DM Sans',system-ui,-apple-system,sans-serif;color:var(--ink)} body{background:var(--bg)} button,textarea{font:inherit} button,a{-webkit-tap-highlight-color:transparent} a{color:inherit;text-decoration:none} button{cursor:pointer} svg{display:block;flex:none} .app{min-height:100vh;display:flex}
+    .sidebar{width:252px;flex:none;background:var(--sidebar);padding:25px 15px 17px;display:flex;flex-direction:column;min-height:100vh;border-right:1px solid #eae9e2}
+    .brand{display:flex;align-items:center;gap:10px;padding:0 9px 35px}.brand-icon{width:32px;height:32px;background:#484a3d;color:#faf9f5;display:grid;place-items:center;border-radius:10px}.brand-name{font-family:Manrope,sans-serif;font-weight:800;letter-spacing:-1px;font-size:20px}.brand-name span{color:#a87955}.sidebar-collapse{margin-left:auto;color:#999a90}
+    .new-chat{height:43px;display:flex;align-items:center;gap:10px;padding:0 12px;background:#fff;border:1px solid #e5e4dd;border-radius:9px;box-shadow:0 2px 5px #26282208;font-weight:600;font-size:13px}.new-chat .plus{font-size:20px;font-weight:400;line-height:1}.new-chat .shortcut{margin-left:auto;font-size:11px;color:#aaa99e;font-weight:400}.new-chat:hover{border-color:#c4b7a8}
+    .nav{display:grid;gap:4px;margin-top:15px}.nav-link{height:39px;display:flex;align-items:center;gap:11px;padding:0 12px;border-radius:8px;color:#66685f;font-size:13px;font-weight:500}.nav-link:hover{background:#e8e7df;color:#292b25}.nav-link.active{background:#e5e4dc;color:#35372f;font-weight:600}.nav-link svg{color:#7e8075}.nav-label{margin:32px 12px 10px;color:#a2a298;font-size:10px;letter-spacing:1.1px;font-weight:700}.history-empty{margin:4px 12px;color:#a3a49a;font-size:12px;line-height:1.6}
+    .sidebar-bottom{margin-top:auto}.upgrade{padding:15px 14px;background:#e8e7df;border:1px solid #e2e1d9;border-radius:11px}.upgrade-icon{width:28px;height:28px;border-radius:8px;background:#f7f5ed;display:grid;place-items:center;color:#8d6f50;margin-bottom:12px}.upgrade strong{font-size:12px;display:block}.upgrade p{font-size:11px;line-height:1.55;color:#898b80;margin:6px 0 12px}.upgrade a{font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:6px}.upgrade a:hover{text-decoration:underline}.sidebar-foot{display:flex;gap:10px;flex-wrap:wrap;padding:18px 2px 0 10px;color:#a0a196;font-size:10px}.sidebar-foot a:hover{color:#555}
+    .main{flex:1;min-width:0;display:flex;flex-direction:column;min-height:100vh}.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 42px}.top-left{display:flex;align-items:center;gap:10px;color:#888a80;font-size:12px}.top-left .slash{color:#d1d1ca}.top-left strong{color:#53554c;font-weight:600}.top-actions{display:flex;align-items:center;gap:19px;font-size:12px;font-weight:600}.login{color:#67685f}.login:hover{text-decoration:underline}.signup{background:#393b33;color:#fff;padding:10px 16px;border-radius:8px}.signup:hover{background:#525449}.mobile-menu{display:none;background:none;border:0;padding:5px;color:#55574e}
+    .content{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 30px 80px}.workspace{width:min(780px,100%)}.hero{text-align:center;margin-bottom:34px}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#929288;font-size:10px;letter-spacing:1.7px;text-transform:uppercase;font-weight:700}.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:#a67d5d;box-shadow:0 0 0 4px #eee6dc}.hero h1{font-family:Manrope,sans-serif;font-size:clamp(39px,4.7vw,61px);letter-spacing:-3.6px;line-height:1.08;margin:20px 0 14px;font-weight:700}.hero h1 span{color:#a47858}.hero p{margin:0;color:#94958b;font-size:14px;line-height:1.6}.hero p strong{color:#77796e;font-weight:500}
+    .suggestions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}.suggestion{text-align:left;min-height:119px;padding:14px 14px 13px;border:1px solid #e9e8e2;border-radius:11px;background:#fff;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;color:#4a4c43;transition:transform .18s,border-color .18s,box-shadow .18s}.suggestion:hover{transform:translateY(-3px);border-color:#d9cbbd;box-shadow:0 9px 24px #5750410c}.suggestion-icon{width:29px;height:29px;border-radius:8px;display:grid;place-items:center}.suggestion:nth-child(1) .suggestion-icon{background:#f1eee6;color:#9d7959}.suggestion:nth-child(2) .suggestion-icon{background:#edf0e9;color:#82947b}.suggestion:nth-child(3) .suggestion-icon{background:#f1eeeb;color:#a28a80}.suggestion:nth-child(4) .suggestion-icon{background:#eeeef0;color:#898998}.suggestion-title{font-size:12px;line-height:1.4;font-weight:600}.suggestion-sub{font-size:10px;color:#a7a79d;margin-top:3px}
+    .composer{background:#fff;border:1px solid #e5e4de;box-shadow:0 8px 30px #39382e0b,0 2px 5px #39382e05;border-radius:15px;padding:18px 18px 13px}.composer:focus-within{border-color:#cbb9a8;box-shadow:0 8px 30px #39382e0b,0 0 0 3px #cbb9a821}.composer textarea{display:block;width:100%;min-height:76px;max-height:190px;resize:none;outline:none;border:0;background:transparent;color:#373930;font-size:14px;line-height:1.6}.composer textarea::placeholder{color:#aaa99f}.composer-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px}.composer-tools{display:flex;align-items:center;gap:8px}.tool{height:31px;display:inline-flex;align-items:center;gap:7px;border:1px solid #eeede8;border-radius:7px;padding:0 9px;background:#fafaf8;color:#77796f;font-size:11px;font-weight:600}.tool:hover{background:#f2f1ec}.tool.agent{color:#55584e}.tool .spark{color:#a47758}.send{border:0;width:35px;height:35px;display:grid;place-items:center;background:#45473d;color:white;border-radius:9px}.send:hover{background:#686b5c}.send:disabled{background:#dbdbd4;color:#fff;cursor:not-allowed}.hint{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:12px 3px 0;color:#a5a59c;font-size:10px}.hint a{color:#8d8174;text-decoration:underline;text-underline-offset:2px}.hint .enter{white-space:nowrap}.hint kbd{font:inherit;background:#f0efe9;border:1px solid #e9e8e1;border-radius:4px;padding:2px 5px;color:#8f9086}
+    .bottom-note{text-align:center;color:#adada3;font-size:10px;padding:0 20px 22px}.bottom-note a{text-decoration:underline;text-underline-offset:2px}.overlay{display:none}.notice{position:fixed;z-index:50;bottom:24px;left:50%;transform:translate(-50%,15px);background:#36382f;color:white;border-radius:10px;padding:13px 16px;font-size:12px;box-shadow:0 8px 25px #0002;opacity:0;pointer-events:none;transition:.2s;max-width:calc(100% - 30px);text-align:center}.notice.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:800px){.sidebar{position:fixed;z-index:30;top:0;bottom:0;left:0;transform:translateX(-100%);transition:transform .2s;box-shadow:15px 0 40px #0001}.sidebar.open{transform:translateX(0)}.overlay.open{display:block;position:fixed;inset:0;background:#28292066;z-index:20}.mobile-menu{display:block}.topbar{height:65px;padding:0 20px}.top-left{gap:8px}.content{padding:30px 22px 70px}.hero h1{letter-spacing:-2.5px}.suggestions{grid-template-columns:repeat(2,1fr)}.suggestion{min-height:100px}.workspace{max-width:600px}}
+    @media(max-width:480px){.top-actions{gap:12px}.top-actions .login{display:none}.signup{padding:9px 12px}.content{padding:35px 16px 60px;justify-content:flex-start}.hero{margin:24px 0 29px}.hero h1{font-size:40px}.hero p{font-size:13px}.suggestions{gap:8px}.suggestion{padding:12px;min-height:105px}.suggestion-title{font-size:11px}.composer{padding:15px 14px 12px}.hint .enter{display:none}.bottom-note{padding-bottom:17px}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <div class="overlay" id="overlay"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Навигация">
+    <a class="brand" href="./" aria-label="CoffeeIT — главная">
+      <span class="brand-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h13v4a6.5 6.5 0 0 1-13 0V9Z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17M5 21h12M8 3v2M12 3v2"/></svg></span>
+      <span class="brand-name">Coffee<span>IT</span></span>
+      <span class="sidebar-collapse"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></span>
+    </a>
+    <a class="new-chat" href="https://arena.ai/agent"><span class="plus">＋</span> Новый чат <span class="shortcut">↗</span></a>
+    <nav class="nav">
+      <a class="nav-link active" href="https://arena.ai/agent"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"/><circle cx="12" cy="12" r="3"/></svg> Агент</a>
+      <a class="nav-link" href="https://arena.ai/leaderboard"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V10h4v10M10 20V4h4v16M15 20v-7h4v7M3 20h18"/></svg> Рейтинг моделей <span style="margin-left:auto;color:#b2b2a8">↗</span></a>
+      <a class="nav-link" href="https://arena.ai/history/search"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg> Поиск <span style="margin-left:auto;color:#b2b2a8">↗</span></a>
+    </nav>
+    <div class="nav-label">ВАШЕ ПРОСТРАНСТВО</div>
+    <div class="history-empty">Ваши чаты и история доступны<br>в аккаунте Arena.</div>
+    <div class="sidebar-bottom">
+      <div class="upgrade"><div class="upgrade-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3ZM19 16l.7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16Z"/></svg></div><strong>Больше возможностей с AI</strong><p>Лучшие модели и инструменты для ваших задач — в одном месте.</p><a href="https://arena.ai/agent">Открыть Arena <span>↗</span></a></div>
+      <div class="sidebar-foot"><a href="https://arena.ai/terms-of-use">Условия</a><a href="https://arena.ai/privacy-policy">Конфиденциальность</a></div>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div class="top-left"><button class="mobile-menu" id="menu" aria-label="Открыть меню" aria-expanded="false"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><span>CoffeeIT</span><span class="slash">/</span><strong>Агент</strong></div><div class="top-actions"><a class="login" href="https://arena.ai/agent">Войти</a><a class="signup" href="https://arena.ai/agent">Начать бесплатно <span style="margin-left:3px">↗</span></a></div></header>
+    <section class="content"><div class="workspace">
+      <div class="hero"><div class="eyebrow"><span class="eyebrow-dot"></span> ВАШЕ ПРОСТРАНСТВО ДЛЯ ИДЕЙ</div><h1>От идеи <span>к действию.</span></h1><p>Спросите что угодно. Создавайте больше.<br><strong>Агент поможет разобраться с остальным.</strong></p></div>
+      <div class="suggestions" aria-label="Примеры запросов">
+        <button class="suggestion" type="button" data-prompt="Предложи улучшения для моего репозитория"><span class="suggestion-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg></span><span><span class="suggestion-title">Улучшить мой код</span><span class="suggestion-sub" style="display:block">Проанализировать репозиторий ↗</span></span></button>
+        <button class="suggestion" type="button" data-prompt="Помоги организовать мои файлы в Google Drive"><span class="suggestion-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H10l2 2h6.5A2.5 2.5 0 0 1 21 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5v-11Z"/></svg></span><span><span class="suggestion-title">Навести порядок</span><span class="suggestion-sub" style="display:block">Организовать файлы в Drive ↗</span></span></button>
+        <button class="suggestion" type="button" data-prompt="Найди важные письма за эту неделю"><span class="suggestion-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span><span><span class="suggestion-title">Разобрать почту</span><span class="suggestion-sub" style="display:block">Найти важные письма ↗</span></span></button>
+        <button class="suggestion" type="button" data-prompt="Помоги мне подключить приложения для работы"><span class="suggestion-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M17 14v6M14 17h6"/></svg></span><span><span class="suggestion-title">Подключить сервисы</span><span class="suggestion-sub" style="display:block">Больше возможностей ↗</span></span></button>
+      </div>
+      <form class="composer" id="form"><textarea id="prompt" aria-label="Ваш запрос" placeholder="Что вы хотите сделать?" rows="2"></textarea><div class="composer-bottom"><div class="composer-tools"><a class="tool agent" href="https://arena.ai/agent" title="Открыть режим агента в Arena"><span class="spark">✧</span> Агент <span style="color:#aaa">⌄</span></a><a class="tool" href="https://arena.ai/agent" title="Выбор модели в Arena"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 8 4.5-8 4.5-8-4.5L12 3ZM4 12l8 4.5 8-4.5M4 16.5l8 4.5 8-4.5"/></svg> Модель <span style="color:#aaa">⌄</span></a></div><button class="send" id="send" type="submit" aria-label="Скопировать запрос и открыть Arena" disabled><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button></div></form>
+      <div class="hint"><span>Запрос будет скопирован. Вставьте его в <a href="https://arena.ai/agent">Arena</a>, чтобы продолжить.</span><span class="enter"><kbd>Enter ↵</kbd> отправить</span></div>
+    </div></section>
+    <div class="bottom-note">CoffeeIT — независимая стартовая страница. AI, аккаунт и интеграции работают на <a href="https://arena.ai/agent">arena.ai ↗</a>.</div>
+  </main>
+</div>
+<div class="notice" id="notice" role="status" aria-live="polite"></div>
+<script>
+  const promptBox=document.getElementById('prompt');
+  const send=document.getElementById('send');
+  const notice=document.getElementById('notice');
+  const sidebar=document.getElementById('sidebar');
+  const overlay=document.getElementById('overlay');
+  const menu=document.getElementById('menu');
+  function update(){send.disabled=!promptBox.value.trim();promptBox.style.height='auto';promptBox.style.height=Math.min(promptBox.scrollHeight,190)+'px'}
+  promptBox.addEventListener('input',update);
+  document.querySelectorAll('.suggestion').forEach(button=>button.addEventListener('click',()=>{promptBox.value=button.dataset.prompt;update();promptBox.focus()}));
+  document.getElementById('form').addEventListener('submit',async event=>{
+    event.preventDefault();
+    const text=promptBox.value.trim();if(!text)return;
+    try{
+      if(!navigator.clipboard || !window.isSecureContext)throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(text);
+      window.location.href='https://arena.ai/agent';
+    }catch(error){
+      promptBox.focus();promptBox.select();
+      notice.textContent='Не удалось скопировать автоматически. Скопируйте выделенный текст и откройте Arena по ссылке ниже.';
+      notice.classList.add('show');setTimeout(()=>notice.classList.remove('show'),7000);
+    }
+  });
+  promptBox.addEventListener('keydown',event=>{if(event.key==='Enter'&&!event.shiftKey&&!event.isComposing){event.preventDefault();document.getElementById('form').requestSubmit()}});
+  function setMenu(open){sidebar.classList.toggle('open',open);overlay.classList.toggle('open',open);menu.setAttribute('aria-expanded',String(open))}
+  menu.addEventListener('click',()=>setMenu(!sidebar.classList.contains('open')));
+  overlay.addEventListener('click',()=>setMenu(false));
+  document.addEventListener('keydown',event=>{if(event.key==='Escape')setMenu(false)});
+</script>
+</body>
+</html>
