@@ -9,6 +9,9 @@ let music = null;
 let ffmpeg = null;
 let busy = false;
 let resultURL = null;
+let selectedClip = null;
+let previewClip = null;
+let previewURL = null;
 
 function message(text, error = false) {
   $('status').textContent = text;
@@ -32,14 +35,61 @@ function readDuration(file) {
     video.src = url;
   });
 }
+function updatePreview() {
+  if (previewClip === selectedClip) return;
+  if (previewURL) URL.revokeObjectURL(previewURL);
+  previewURL = null;
+  previewClip = selectedClip;
+  const video = $('sourceVideo');
+  video.pause();
+  if (selectedClip) {
+    previewURL = URL.createObjectURL(selectedClip.file);
+    video.src = previewURL;
+    video.hidden = false;
+    $('previewEmpty').hidden = true;
+    $('previewName').textContent = selectedClip.file.name;
+  } else {
+    video.removeAttribute('src');
+    video.load();
+    video.hidden = true;
+    $('previewEmpty').hidden = false;
+    $('previewName').textContent = 'Клип не выбран';
+  }
+}
+function selectClip(clip) {
+  selectedClip = clip;
+  showClips();
+}
+function showTimeline() {
+  const container = $('timelineClips');
+  container.replaceChildren();
+  $('timelineEmpty').hidden = clips.length > 0;
+  for (const [index, clip] of clips.entries()) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'timeline-clip' + (clip === selectedClip ? ' selected' : '');
+    button.setAttribute('aria-pressed', String(clip === selectedClip));
+    button.title = `Просмотреть ${clip.file.name}`;
+    const name = document.createElement('strong'); name.textContent = `${index + 1}. ${clip.file.name}`;
+    const info = document.createElement('small');
+    const duration = Number(clip.end) - Number(clip.start);
+    info.textContent = clip.start !== '' && clip.end !== '' && Number.isFinite(duration) && duration > 0 ? `${duration.toFixed(1)} сек` : 'Проверьте отрезок';
+    button.append(name, info);
+    button.addEventListener('click', () => selectClip(clip));
+    container.append(button);
+  }
+  const audio = $('timelineMusic');
+  audio.textContent = music ? `♫  ${music.name} · заменяет звук клипов` : 'Музыка не добавлена';
+  audio.className = music ? 'music-present' : 'track-empty';
+}
 function showClips() {
   const container = $('clips');
   container.replaceChildren();
   clips.forEach((clip, index) => {
-    const card = document.createElement('div'); card.className = 'clip';
+    const card = document.createElement('div'); card.className = 'clip' + (clip === selectedClip ? ' selected' : '');
     const top = document.createElement('div'); top.className = 'clip-top';
     const number = document.createElement('div'); number.className = 'clip-number'; number.textContent = String(index + 1).padStart(2, '0');
-    const title = document.createElement('div'); title.className = 'clip-title';
+    const title = document.createElement('button'); title.type = 'button'; title.className = 'clip-title'; title.setAttribute('aria-label', `Просмотреть ${clip.file.name}`); title.setAttribute('aria-pressed', String(clip === selectedClip)); title.addEventListener('click', () => selectClip(clip));
     const name = document.createElement('strong'); name.textContent = clip.file.name; name.title = clip.file.name;
     const detail = document.createElement('small'); detail.textContent = `${clip.duration.toFixed(1)} сек · ${size(clip.file.size)}`;
     title.append(name, detail); top.append(number, title);
@@ -50,17 +100,21 @@ function showClips() {
     };
     action('Переместить выше', '↑', index === 0, () => { [clips[index - 1], clips[index]] = [clips[index], clips[index - 1]]; showClips(); });
     action('Переместить ниже', '↓', index === clips.length - 1, () => { [clips[index + 1], clips[index]] = [clips[index], clips[index + 1]]; showClips(); });
-    action('Удалить клип', '×', false, () => { clips.splice(index, 1); showClips(); });
+    action('Удалить клип', '×', false, () => { clips.splice(index, 1); if (selectedClip === clip) selectedClip = clips[Math.min(index, clips.length - 1)] || null; showClips(); });
     const trim = document.createElement('div'); trim.className = 'trim';
     const field = (text, key) => {
       const label = document.createElement('label'); label.textContent = text;
       const input = document.createElement('input'); input.type = 'number'; input.min = '0'; input.max = String(clip.duration); input.step = '0.01'; input.value = clip[key]; input.setAttribute('aria-label', `${text}: ${clip.file.name}`);
-      input.addEventListener('input', () => { clip[key] = input.value; }); label.append(input); return label;
+      input.addEventListener('input', () => { clip[key] = input.value; showTimeline(); }); label.append(input); return label;
     };
     const dash = document.createElement('span'); dash.textContent = '—';
     trim.append(field('Начало, сек', 'start'), dash, field('Конец, сек', 'end'));
     card.append(top, trim); container.append(card);
   });
+  $('clipCount').textContent = clips.length;
+  $('emptyClips').hidden = clips.length > 0;
+  updatePreview();
+  showTimeline();
   $('total').textContent = clips.length ? `Клипов: ${clips.length} · ${size(totalBytes())} из 200 МБ` : 'Пока нет добавленных видео';
   $('export').disabled = !clips.length || busy;
   if (!busy) message(clips.length ? 'Настройте отрезки и создайте видео.' : 'Добавьте хотя бы один клип, чтобы начать.');
@@ -75,7 +129,7 @@ async function addFiles(fileList) {
   let failed = [];
   for (const file of files) {
     if (file.type && !file.type.startsWith('video/')) { failed.push(file.name); continue; }
-    try { const duration = await readDuration(file); clips.push({ file, duration, start: '0', end: String(Math.floor(duration * 100) / 100 || duration) }); }
+    try { const duration = await readDuration(file); const clip = { file, duration, start: '0', end: String(Math.floor(duration * 100) / 100 || duration) }; clips.push(clip); if (!selectedClip) selectedClip = clip; }
     catch { failed.push(file.name); }
   }
   $('clipsControls').disabled = false;
@@ -98,7 +152,7 @@ $('music').addEventListener('change', (event) => {
   }
   music = file; $('audioName').textContent = file.name; $('audioName').title = file.name; $('removeMusic').hidden = false; showClips();
 });
-$('removeMusic').addEventListener('click', () => { music = null; $('music').value = ''; $('audioName').textContent = 'Не выбрана'; $('removeMusic').hidden = true; showClips(); });
+$('removeMusic').addEventListener('click', () => { music = null; $('music').value = ''; $('audioName').textContent = 'Музыка не выбрана'; $('removeMusic').hidden = true; showClips(); });
 
 async function getFFmpeg() {
   if (ffmpeg?.loaded) return ffmpeg;
@@ -167,4 +221,4 @@ async function exportVideo() {
   }
 }
 $('export').addEventListener('click', exportVideo);
-window.addEventListener('pagehide', () => { if (resultURL) URL.revokeObjectURL(resultURL); });
+window.addEventListener('pagehide', (event) => { if (!event.persisted) { if (resultURL) URL.revokeObjectURL(resultURL); if (previewURL) URL.revokeObjectURL(previewURL); } });
