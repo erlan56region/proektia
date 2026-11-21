@@ -83,7 +83,10 @@ async function addFiles(fileList) {
   if (failed.length) message(`Не удалось открыть: ${failed.join(', ')}. Попробуйте MP4 или WebM.`, true);
 }
 $('videos').addEventListener('change', async (event) => { const files = event.target.files; await addFiles(files); event.target.value = ''; });
+$('chooseVideos').addEventListener('click', () => $('videos').click());
+$('chooseMusic').addEventListener('click', () => $('music').click());
 const drop = $('drop');
+drop.addEventListener('click', (event) => { if (!busy && !event.target.closest('button')) $('videos').click(); });
 for (const type of ['dragenter', 'dragover']) drop.addEventListener(type, (event) => { event.preventDefault(); if (!busy) drop.classList.add('drag'); });
 for (const type of ['dragleave', 'drop']) drop.addEventListener(type, (event) => { event.preventDefault(); drop.classList.remove('drag'); });
 drop.addEventListener('drop', (event) => addFiles(event.dataTransfer.files));
