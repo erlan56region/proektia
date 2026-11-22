@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5f0">
+  <meta name="description" content="Фабрика ТОК — дизайнерская мебель премиум-класса. Модульные диваны, кровати, столы и стулья собственного производства. Шоу-румы в Москве и Санкт-Петербурге.">
+  <title>ТОК — фабрика дизайнерской мебели</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ТОК — фабрика дизайнерской мебели">
+  <meta property="og:title" content="ТОК — дизайнерская мебель премиум-класса">
+  <meta property="og:description" content="Модульные диваны, кровати, столы и стулья собственного производства. Шоу-румы в Москве и Санкт-Петербурге.">
+  <meta property="og:image" content="images/hero-aspect.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header data-header></header>
+
+  <main>
+    <section class="hero">
+      <div class="hero__media">
+        <img src="images/hero-aspect.jpg" alt="Модульный диван серии Аспект в светлой гостиной" fetchpriority="high">
+      </div>
+      <div class="wrap hero__inner">
+        <span class="hero__tag"><i></i> Новая серия · 2026</span>
+        <h1>Модульная серия <em>Аспект</em></h1>
+        <p class="hero__text">Создайте свою уникальную конфигурацию. Компактная посадка, декоративные кантики и интеграция журнальных столиков — интерьер под ваш ритм жизни.</p>
+        <div class="hero__actions">
+          <a class="btn btn--light" href="series.html?series=aspect">Смотреть серию</a>
+          <a class="btn btn--ghost" style="--fg:#fff;border-color:rgba(255,255,255,.5)" href="contacts.html">Записаться в шоу-рум</a>
+        </div>
+        <div class="hero__meta">
+          <div><b>2019</b><span>Год основания</span></div>
+          <div><b>1 267 м²</b><span>Три шоу-рума</span></div>
+          <div><b>Полный цикл</b><span>Собственное производство</span></div>
+          <div><b>Москва · СПб</b><span>Города присутствия</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="catalog">
+      <div class="wrap">
+        <div class="section__head">
+          <div>
+            <span class="kicker">Каталог</span>
+            <h2>Мебель, которая меняет представление о российском дизайне</h2>
+          </div>
+          <div>
+            <p class="lead">Пять направлений, единая материальная логика: массив дуба и бука, инженерный мрамор, букле и лён.</p>
+            <a class="link-arrow" href="products.html" style="margin-top:18px">Вся продукция</a>
+          </div>
+        </div>
+        <div class="mosaic" data-categories></div>
+      </div>
+    </section>
+
+    <section class="section section--paper2">
+      <div class="wrap">
+        <div class="section__head">
+          <div>
+            <span class="kicker">Новые модели</span>
+            <h2>Свежие серии и предметы</h2>
+          </div>
+          <a class="link-arrow" href="products.html?sort=new">Все новинки</a>
+        </div>
+        <div class="grid-products" data-new-products></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap split">
+        <div class="split__media reveal">
+          <img src="images/hero-balloon.jpg" alt="Кровать серии Баллон с эффектом парения" loading="lazy">
+          <div class="badge-float"><b>5 см</b><span>цоколь, который создаёт эффект парения</span></div>
+        </div>
+        <div class="split__body reveal">
+          <span class="kicker">Серия Баллон</span>
+          <h2>Выразительный эффект парения</h2>
+          <p class="lead">Кровати серии Баллон созданы как альтернативное решение для любителей высоких матрасов.</p>
+          <p class="muted">Цоколь высотой всего 5 см обеспечивает едва заметный, но выразительный эффект парения, подчёркивая лёгкость и современность образа. Отсутствие ножек акцентирует внимание на монолитности силуэта, а декоративный кант образует замкнутый контур, объединяющий все мягкие элементы.</p>
+          <a class="btn btn--ghost" href="series.html?series=balloon">Серия Баллон</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight section--paper2">
+      <div class="wrap">
+        <div class="stats reveal">
+          <div class="stat"><b>2019</b><span>Основана в Санкт-Петербурге</span></div>
+          <div class="stat"><b>1 267 м²</b><span>Площадь шоу-румов</span></div>
+          <div class="stat"><b>100%</b><span>Собственное производство</span></div>
+          <div class="stat"><b>8–10 нед.</b><span>Срок изготовления</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap split split--reverse">
+        <div class="split__media split__media--tall reveal">
+          <img src="images/product-chair.jpg" alt="Стул Байкал Нова с парящей спинкой" loading="lazy">
+        </div>
+        <div class="split__body reveal">
+          <span class="kicker">Легенда в новой редакции</span>
+          <h2>Байкал Нова: стул с «парящей» спинкой</h2>
+          <p class="lead">Массив дуба в основании дарит ощущение надёжности, многослойная мягкая обивка создаёт эффект «обволакивающего облака».</p>
+          <p class="muted">Мы отшлифовали каждый угол до идеальной плавности, чтобы линии каркаса перетекали друг в друга без единого зазора. Стул так легко переместить по комнате — достаточно одного движения руки, чтобы изменить композицию.</p>
+          <a class="btn btn--ghost" href="product.html?slug=baikal-nova">О модели</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--ink">
+      <div class="wrap">
+        <div class="section__head">
+          <div>
+            <span class="kicker">Материалы</span>
+            <h2>Тактильность — часть конструкции</h2>
+          </div>
+          <p class="lead" style="max-width:38ch">Мы работаем с фабриками Италии и России: текстиль, кожа, инженерный мрамор и шпон дуба с собственным каталогом образцов.</p>
+        </div>
+        <div class="materials">
+          <div class="split__media reveal">
+            <img src="images/workshop.jpg" alt="Производство мебели ТОК: ручная обработка дубового каркаса" loading="lazy" style="aspect-ratio:16/11">
+          </div>
+          <div class="swatches reveal" data-swatches></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section__head">
+          <div>
+            <span class="kicker">Шоу-румы</span>
+            <h2>Мебель можно потрогать</h2>
+          </div>
+          <a class="link-arrow" href="showrooms.html">Все шоу-румы</a>
+        </div>
+        <div class="rooms" data-rooms></div>
+      </div>
+    </section>
+
+    <section class="section section--paper2">
+      <div class="wrap">
+        <div class="section__head">
+          <div>
+            <span class="kicker">Новости</span>
+            <h2>Что происходит на фабрике</h2>
+          </div>
+          <a class="link-arrow" href="news.html">Все новости</a>
+        </div>
+        <div class="news-grid" data-news></div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <img src="images/showroom.jpg" alt="" aria-hidden="true" loading="lazy">
+      <div class="wrap cta__inner">
+        <span class="kicker" style="color:rgba(255,255,255,.7)">Индивидуальный проект</span>
+        <h2>Соберём интерьер вместе с вами</h2>
+        <p>Дизайнер фабрики поможет собрать композицию, подобрать обивку и продумать размеры под ваше помещение. Консультация в шоу-руме или онлайн.</p>
+        <button class="btn btn--light" type="button" data-lead="Обсудить проект">Оставить заявку</button>
+      </div>
+    </section>
+  </main>
+
+  <footer data-footer></footer>
+
+  <script type="module" src="src/pages/home.js"></script>
+</body>
+</html>
