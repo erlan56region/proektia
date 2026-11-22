@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5f0">
+  <meta name="description" content="Каталог дизайнерской мебели ТОК: модульные диваны, кровати, столы, стулья и предметы интерьера. Цены от производителя, изготовление 8–10 недель.">
+  <title>Каталог мебели — ТОК</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header data-header></header>
+  <main>
+    <section class="page-head">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Хлебные крошки">
+          <a href="index.html">Главная</a><span class="sep">/</span><span data-crumb>Продукция</span>
+        </nav>
+        <span class="kicker">Каталог · <span data-count></span></span>
+        <h1 data-title>Продукция фабрики ТОК</h1>
+        <p class="lead" data-subtitle>Диваны, кровати, столы и сиденья собственного производства. Все цены — от фабрики, без наценки салонов.</p>
+      </div>
+    </section>
+
+    <section class="section section--tight" style="padding-bottom:clamp(50px,7vw,96px)">
+      <div class="wrap">
+        <div class="toolbar">
+          <div class="filters" data-filters></div>
+          <label class="sort">Сортировка
+            <select data-sort>
+              <option value="new">Сначала новинки</option>
+              <option value="asc">Цена: по возрастанию</option>
+              <option value="desc">Цена: по убыванию</option>
+              <option value="name">По названию</option>
+            </select>
+          </label>
+        </div>
+        <div class="grid-products" data-grid></div>
+        <p class="empty" data-empty hidden>В этой категории пока нет моделей. Посмотрите <a href="products.html" style="border-bottom:1px solid">весь каталог</a>.</p>
+      </div>
+    </section>
+
+    <section class="cta">
+      <img src="images/showroom.jpg" alt="" aria-hidden="true" loading="lazy">
+      <div class="wrap cta__inner">
+        <span class="kicker" style="color:rgba(255,255,255,.7)">Не нашли подходящую конфигурацию?</span>
+        <h2>Соберём модель под ваше помещение</h2>
+        <p>Модульные серии Аспект и Баллон собираются из элементов: изменим размер, глубину посадки и обивку под ваш проект.</p>
+        <button class="btn btn--light" type="button" data-lead="Индивидуальная конфигурация">Обсудить с дизайнером</button>
+      </div>
+    </section>
+  </main>
+  <footer data-footer></footer>
+  <script type="module" src="src/pages/products.js"></script>
+</body>
+</html>

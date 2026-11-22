@@ -10,7 +10,8 @@
     "agent": "node agent/cli.js",
     "agent:doctor": "node agent/cli.js doctor",
     "agent:run": "node agent/cli.js run --once",
-    "test": "node --test agent/test/*.test.js"
+    "test": "node --test agent/test/*.test.js",
+    "dev:mebel": "vite --host 0.0.0.0 mebel"
   },
   "dependencies": {
     "@ffmpeg/core": "0.12.10",

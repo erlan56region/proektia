@@ -6,6 +6,7 @@ on:
       - main
       # Publish this working branch now; subsequent releases come from main.
       - arena/a42be71b-proektia
+      - arena/64affdcd-proektia
   workflow_dispatch:
 
 permissions:

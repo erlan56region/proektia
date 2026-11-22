@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5f0">
+  <meta name="description" content="Контакты фабрики ТОК: телефоны, e-mail, реквизиты и адреса шоу-румов в Москве и Санкт-Петербурге. Заявка на консультацию дизайнера.">
+  <title>Контакты — ТОК</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .contacts { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(26px,4vw,64px); align-items: start; }
+    .contact-card { background: var(--card); border: 1px solid var(--line); padding: clamp(22px,3vw,34px); display: grid; gap: 20px; }
+    .contact-row { display: grid; gap: 4px; }
+    .contact-row span { font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+    .contact-row a, .contact-row b { font-family: var(--serif); font-size: clamp(20px,2vw,26px); font-weight: 500; }
+    .contact-row a:hover { color: var(--accent-deep); }
+    .contact-row small { font-size: 12.5px; color: var(--muted); }
+    .contact-divider { height: 1px; background: var(--line); }
+    .map-frame { border: 1px solid var(--line); aspect-ratio: 16/9; background: var(--paper-2); position: relative; overflow: hidden; display: grid; place-items: center; text-align: center; padding: 24px; }
+    .map-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .9; }
+    .map-frame__body { position: relative; z-index: 1; background: rgba(255,253,249,.9); padding: 18px 22px; border: 1px solid var(--line); }
+    @media(max-width:900px){ .contacts { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header data-header></header>
+  <main>
+    <section class="page-head">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Хлебные крошки">
+          <a href="index.html">Главная</a><span class="sep">/</span><span>Контакты</span>
+        </nav>
+        <span class="kicker">Связаться с фабрикой</span>
+        <h1>Обсудим ваш интерьер</h1>
+        <p class="lead">Ответим на вопросы о моделях, сроках и материалах. Консультация в шоу-руме или онлайн — бесплатно.</p>
+      </div>
+    </section>
+
+    <section class="section section--tight" style="padding-bottom:clamp(50px,7vw,96px)">
+      <div class="wrap contacts">
+        <div style="display:grid;gap:20px">
+          <div class="contact-card reveal">
+            <div class="contact-row">
+              <span>Телефон Москва</span>
+              <a href="tel:+79006377770">+7 (900) 637-77-70</a>
+              <small>Шоу-рум ЖК ЗИЛарт, ежедневно 10:00–20:00</small>
+            </div>
+            <div class="contact-divider"></div>
+            <div class="contact-row">
+              <span>Телефон Санкт-Петербург</span>
+              <a href="tel:+79119200499">+7 (911) 920-04-99</a>
+              <small>Шоу-рум Design District, ежедневно 10:00–20:00</small>
+            </div>
+            <div class="contact-divider"></div>
+            <div class="contact-row">
+              <span>Почта</span>
+              <a href="mailto:sales@tok-mebel.ru">sales@tok-mebel.ru</a>
+              <small>Заявки, образцы материалов, сотрудничество</small>
+            </div>
+            <div class="contact-divider"></div>
+            <div class="contact-row">
+              <span>Юридическое лицо</span>
+              <b style="font-size:16px;font-family:var(--sans)">ООО «Ток Мебель»</b>
+              <small>Санкт-Петербург · © 2018–2026</small>
+            </div>
+          </div>
+          <div class="contact-card reveal" style="gap:12px">
+            <span class="kicker">Шоу-румы</span>
+            <a class="link-arrow" href="showrooms.html">Design District · СПб</a>
+            <a class="link-arrow" href="showrooms.html#zilart">ЖК ЗИЛарт · Москва</a>
+            <a class="link-arrow" href="showrooms.html#artplay">Artplay · Москва</a>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="map-frame" style="margin-bottom:22px">
+            <img src="images/showroom.jpg" alt="" aria-hidden="true">
+            <div class="map-frame__body">
+              <span class="kicker" style="display:block;margin-bottom:6px">Три шоу-рума</span>
+              <b style="font-family:var(--serif);font-size:22px;font-weight:500">1 267 м² экспозиции</b>
+            </div>
+          </div>
+          <h2 style="font-size:clamp(26px,3vw,40px)">Заявка на консультацию</h2>
+          <p class="muted" style="font-size:13.5px;margin:10px 0 20px">Менеджер свяжется в течение рабочего дня, поможет с выбором и подготовит образцы.</p>
+          <form class="form" data-contact-form novalidate>
+            <div class="field--row">
+              <div class="field"><label for="c-name">Имя</label><input id="c-name" name="name" required autocomplete="name" placeholder="Как к вам обращаться"></div>
+              <div class="field"><label for="c-phone">Телефон</label><input id="c-phone" name="phone" required inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__"></div>
+            </div>
+            <div class="field--row">
+              <div class="field"><label for="c-city">Город</label>
+                <select id="c-city" name="city">
+                  <option>Москва</option><option>Санкт-Петербург</option><option>Другой город</option>
+                </select>
+              </div>
+              <div class="field"><label for="c-topic">Тема</label>
+                <select id="c-topic" name="topic">
+                  <option>Подбор мебели</option><option>Индивидуальный проект</option>
+                  <option>Сотрудничество с дизайнером</option><option>Образцы материалов</option>
+                </select>
+              </div>
+            </div>
+            <div class="field"><label for="c-msg">Сообщение</label><textarea id="c-msg" name="msg" placeholder="Опишите задачу: помещение, серия, сроки"></textarea></div>
+            <label class="consent"><input type="checkbox" required> Согласен на обработку персональных данных</label>
+            <button class="btn" type="submit">Отправить заявку</button>
+            <p class="form-status" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer data-footer></footer>
+  <script type="module" src="src/pages/contacts.js"></script>
+</body>
+</html>
